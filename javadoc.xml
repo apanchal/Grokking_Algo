@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Java Documentation Properties">
+	
+	<!-- Company Name -->
+	<property name="companyName" value="^^COMPANY_NAME^^" />
+
+	<!-- Library Name -->
+	<property name="officialName" value="^^MODULE^^" />
+
+	<!-- JAva Documentation Directory -->
+	<property name="javadoc.dir" value="doc/api" />
+	
+	<!-- Java Library Version -->
+	<property name="version" value="^^VERSION^^" />
+
+	<!-- Java Library Copy Right Year -->
+	<property name="year" value="2008, 2009, 2010" />
+	
+	<!-- Java Library Copy Right Message -->
+	<property name="copyright" value="^^copyright^^" />
+
+	<!-- JDK 1.6 Documentation Link -->
+	<property name="JDK-1.6-API" value="http://java.sun.com/javase/6/docs/api/" />
+
+	<!-- Log4j 1.2.15 Documentation Link -->
+	<property name="Log4j-1.2.15-API" value="http://logging.apache.org/log4j/1.2/apidocs/" />
+	
+	<!-- Sping Documentation Link -->
+	<property name="Spring-2.5-API" value="http://static.springframework.org/spring/docs/2.5.x/api/" />
+
+</project>

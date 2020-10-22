@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GrokkingAlgo Common Build Task">
+
+	<!-- =============================================================== -->
+	<!-- Import Library file -->
+	<!-- =============================================================== -->
+	<import file="lib/lib-properties.xml" />
+
+	<!-- =============================================================== -->
+	<!-- Classpath For Data Model Module -->
+	<!-- =============================================================== -->
+	<path id="datamodel.compile.classpath">
+		<fileset dir="${infrastructure.lib.dir}" includes="*.jar" />
+		<fileset dir="${hibernate.core.lib.dir}" includes="*.jar" />
+		<fileset dir="${hibernate.bytecode.lib.dir}" includes="*.jar" />
+		<fileset dir="${hibernate.entity.manager.lib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- =============================================================== -->
+	<!-- Macro For Compiling Java Source -->
+	<!-- =============================================================== -->
+	<macrodef name="compile">
+		<attribute name="module" />
+		<attribute name="additional.src.dirs" default="" />
+		<element name="options" optional="yes" />
+
+		<sequential>
+			<echo>Compiling @{module}...</echo>
+			<echo>Compiling @{module} using classpath @{module}.compile.classpath</echo>
+			<mkdir dir="${build.dir}/@{module}/classes" />
+			<javac srcdir="${src.dir};@{additional.src.dirs}" destdir="${build.dir}/@{module}/classes" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" classpathref="@{module}.compile.classpath">
+				<compilerarg value="-Xlint" />
+				<options />
+			</javac>
+		</sequential>
+	</macrodef>
+
+	<!-- =============================================================== -->
+	<!-- Macro For Packaging/Jaring Application Compiled Source Code -->
+	<!-- =============================================================== -->
+	<macrodef name="package">
+		<attribute name="module" />
+		<sequential>
+			<echo message="Packging @{module}..." />
+			<jar filesetmanifest="skip" destfile="${dist.dir}/@{module}.jar">
+				<fileset dir="${build.dir}/@{module}/classes" />
+			</jar>
+			<echo message="Packaged Module @{module}				[OK]" />
+		</sequential>
+	</macrodef>
+	
+	<!-- =============================================================== -->
+	<!-- Macro For Java Documentation -->
+	<!-- =============================================================== -->
+
+	<macrodef name="createjavadoc">
+		<sequential>
+			<delete dir="${dist.dir}/${javadoc.dir}" />
+			<mkdir dir="${dist.dir}/${javadoc.dir}" />
+			<javadoc sourcepath="${src.dir}/java" 
+					destdir="${dist.dir}/${javadoc.dir}" 
+					packagenames="com.*" 
+					Author="true" 
+					version="true" 
+					use="true" 
+					linksource="yes" 
+					classpathref="datamodel.compile.classpath" 
+					Windowtitle="${officialName}">
+					<!-- <doctitle>
+						<![CDATA[<h1>${officialName} ${version} API Documentation</h1>]]>
+					</doctitle>
+					<bottom>
+						<![CDATA[<i>${officialName} ${version} API Documentation - Copyright ${year} ${copyright}</i>]]>
+					</bottom> -->
+			</javadoc>
+		</sequential>
+	</macrodef>
+</project>

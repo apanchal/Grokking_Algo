@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		Copyright (C) 2007,2008,2009 Ashish Panchal All Rights Reserved. This software is the confidential and proprietary information of Ashish Panchal. You shall not disclose such Confidential Information and shall use it only in accordance with the terms of the license agreement you entered into with Author.
+	-->
+<project name="Chapter04" default="buildModule">
+
+	<!-- =============================================================== -->
+	<!-- Import library and common build files -->
+	<!-- =============================================================== -->
+	<import file="../lib/lib-properties.xml" />
+	<import file="../build-common.xml" />
+	<import file="../javadoc.xml" />
+
+	<!-- Java Source Directory -->
+	<property name="src.dir" value="${basedir}/src" />
+
+	<!-- Configuration Directory -->
+<!-- 	<property name="config.dir" value="infrastructure-ejb/src/conf" /> -->
+
+	<!-- Build Directory -->
+	<property name="build.dir" value="${basedir}/build" />
+
+	<!-- Distribution Directory -->
+	<property name="dist.dir" value="${basedir}/dist" />
+
+	<target name="info">
+		<echo message="Base Directory:${basedir}" />
+		<echo message="Source Directory:${src.dir}" />
+		<echo message="Config Directory:${config.dir}" />
+		<echo message="Build Directory:${build.dir}" />
+		<echo message="Dist Directory:${dist.dir}" />
+	</target>
+
+	<!-- =============================================================== -->
+	<!-- target: clean -->
+	<!-- =============================================================== -->
+	<target name="clean" description="cleans/deletes all runime created directories">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- =============================================================== -->
+	<!-- target: prepare -->
+	<!-- =============================================================== -->
+	<target name="prepare" depends="clean" description="creates runime directories">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- =============================================================== -->
+	<!-- target: compile-Chapter04 -->
+	<!-- =============================================================== -->
+	<target name="compile-Chapter04" depends="prepare" description="Compile Chapter04 module">
+		<compile module="Chapter04" />
+	</target>
+
+	<!-- =============================================================== -->
+	<!-- target: package-Chapter04 -->
+	<!-- =============================================================== -->
+	<target name="package-Chapter04" depends="compile-Chapter04,javaDoc" description="Packages Chapter04 module in Jar">
+		<package module="Chapter04" />
+	</target>
+	
+	<!-- =============================================================== -->
+	<!-- target: javaDoc -->
+	<!-- =============================================================== -->
+	<target name="javaDoc">
+		<createjavadoc/>
+	</target>
+
+	<target name="buildModule" depends="package-Chapter04" />
+</project>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (C) 2007,2008,Ashish Panchal
+	All Rights Reserved.
+	
+	This software is the confidential and proprietary information
+	of Ashish Panchal. You shall not disclose such Confidential Information 
+	and shall use it only in accordance with the terms of the license agreement
+	you entered into with Ashish Panchal.
+-->
+<project name="GrokkingAlgo" default="build_GrokkingAlgo" basedir=".">
+	<!-- =============================================================== -->
+	<!-- Import Library file -->
+	<!-- =============================================================== -->
+	<import file="build-common.xml" />
+
+	<!-- Build Directory -->
+	<property name="build.dir" value="${basedir}${file.separator}build" />
+
+	<!-- Application Library Directory -->
+	<property name="app.name" value="GrokkingAlgo.ear" />
+
+	<!-- Application Library Directory -->
+	<property name="app.lib.dir" value="${basedir}${file.separator}lib" />
+
+	<!-- Distribution Directory -->
+	<property name="dist.dir" value="${basedir}${file.separator}dist" />
+
+	<target name="info">
+		<echo message="Base Directory:${basedir}" />
+		<echo message="Application Library Directory:${app.lib.dir}" />
+		<echo message="Build Directory:${build.dir}" />
+		<echo message="Dist Directory:${dist.dir}" />
+	</target>
+
+	<!-- =============================================================== -->
+	<!-- target: clean -->
+	<!-- =============================================================== -->
+	<target name="clean" description="cleans/deletes all runime created directories">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- =============================================================== -->
+	<!-- target: prepare -->
+	<!-- =============================================================== -->
+	<target name="prepare" depends="clean" description="creates runime directories">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- =============================================================== -->
+	<!-- public target: build_GrokkingAlgo -->
+	<!-- =============================================================== -->
+	<target name="build_GrokkingAlgo" description="builds GrokkingAlgo application">
+		<antcall target="prepare"/>
+		<antcall target="depending_modules"/>
+	</target>
+
+	
+
+	<!-- =============================================================== -->
+	<!-- private target: depending_modules -->
+	<!-- =============================================================== -->
+	<target name="depending_modules" description="Builds depending modules of GrokkingAlgo application">
+	</target>
+	
+	<!-- =============================================================== -->
+	<!-- target: copy_libraries -->
+	<!-- =============================================================== -->
+	<target name="copy_libraries" description="copies all required jars including application jars">
+		<delete dir="${build.dir}${file.separator}lib"/>
+		<mkdir dir="${build.dir}${file.separator}lib"/>
+		<!-- Copy common utilities -->
+				
+		<!-- Copy domain objects -->
+		
+		<!-- Copy Application Library -->
+		
+	</target>
+	
+	
+</project> 
